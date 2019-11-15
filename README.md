@@ -1,12 +1,12 @@
 # Author-Topic modeling (ATM) for Customer Segmentation
 
-This repository explores the implementation of an author-topic modeling strategy for basket analysis and customer segmentation problem. This is carried out using a subset of a Dunnhumby dataset containing the activity of 5.000 customers over 2 years at a retail chain, the dataset is available [here](https://www.dunnhumby.com/careers/engineering/sourcefiles#).
+This repository explores the implementation of an author-topic modeling strategy for basket analysis and customer segmentation problem. This is carried out using a subset of a Dunnhumby dataset containing the activity of 5.000 customers over 2 years at a retail chain. The dataset is available [here](https://www.dunnhumby.com/careers/engineering/sourcefiles#).
 
-Several literature was found for implementing topic models on basket data, including Latent Dirichlet Allocation (LDA), Sequence LDA, Correlated Topic Models (CTM), Dynamic Topic Model (DTM) and other LDA variants. Most use the set of products purchased by the customer as words in order to find latent topics to assign to all customers in a similar fashion to how LDA assigns a probability distribution over latent topics. However, no other work has applied the dynamics of authors-topics-documents to customers-baskets-products, in order to model customers as a probability distribution over topics and baskets as a distribution of topics.
+Several literature was found for implementing topic models on basket data, including Latent Dirichlet Allocation (LDA), Sequence LDA, Correlated Topic Models (CTM), Dynamic Topic Model (DTM) and other LDA variants. Most use the set of products purchased by the customer as words in order to find latent topics to assign to all customers in a similar fashion to how LDA assigns a probability distribution over topics to a document, some others model baskets by assigning a probability distribution over products to topics and topics to baskets. However, *no other work has applied the dynamics of authors-topics-documents to customers-baskets-products*, in order to model customers as a probability distribution over topics and baskets as a distribution of topics.
 
 ## More about the ATM 
 
-Proposed by Rosen-Zvi et al, the model is based on Topic LDA (Blei et al) and combine it with an author model by introducing a  these two but introducing another Dirichlet prior for topic assignments over authors, in order to find what authors write about and what documents contain and how this is related to the whole corpus. Check the [paper](https://mimno.infosci.cornell.edu/info6150/readings/398.pdf) for more details on the model.
+Proposed by Rosen-Zvi et al, the model is based on Topic LDA (Blei et al) and combine it with an author model by introducing Dirichlet prior for topic assignments over authors, in order to find what authors write about and what documents contain and how this is related to the whole corpus. Check the [paper](https://mimno.infosci.cornell.edu/info6150/readings/398.pdf) for more details on the model.
 
 This model has been implemented in gensim as **atmodel** based on Rosen-Zvi's work and it inherits from the Ldamodel from the same package. All details [here](https://radimrehurek.com/gensim/models/atmodel.html).
 
@@ -25,9 +25,9 @@ Here are some of the reasons why it would be useful to model customers and baske
 # Customer Segmentation
 
 This repo is divided in three main parts (so is the code) that can be found in the **Code** folder:
-1. **ETL**: since this data was delivered as multiple csv files that were merged, transformed and sent to a SQL database for ease of access and future reference. The file and database schema can also be found here.
-2. **Data querying and cleaning**: In this step the database is queried with the data required and then a couple of datasets for customers and baskets are created.
-3. **ATM Modeling**: this script contains the application and results obtained from the author topic modeling approach that was used for this work.
+1. [**ETL**](Code/ETL_Pipe.ipynb): since this data was delivered as multiple csv files that were merged, transformed and sent to a SQL database for ease of access and future reference. The file and database schema can also be found here.
+2. [**Data querying and cleaning**](Code/DataCleaning.ipynb): In this step the database is queried with the data required and then a couple of datasets for customers and baskets are created.
+3. [**ATM Modeling**](Code/ATM.ipynb): this script contains the application and results obtained from the author topic modeling approach that was used for this work.
 
 
 # References
